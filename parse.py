@@ -8,8 +8,11 @@ if len(sys.argv) != 2:
 
 class Node:
 	def __init__(self, xpos, ypos):
-		self.x = xpos
-		self.y = ypos
+		self.__x = xpos
+		self.__y = ypos
+		self.wall_type = -1
+		self.accessability = -1 
+		#accessability would be 1 for accessable and 0 for not 
 
 # Robot 1: S -> E
 # Robot 2: F -> L
