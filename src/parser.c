@@ -1,6 +1,5 @@
 #include "pathfinder.h"
 
-
 int parser(FILE* inputFile, char map[][BUFFER], int y){
     
     char charByChar; //holds current char 
@@ -40,7 +39,16 @@ void map_printer(char map[][BUFFER], int y){
             xpos = 0;
             printf("\n");
         }
-        printf("%c", map[xpos][ypos]);
-        xpos++;
+	else{
+		if(map[xpos][ypos] == '#') 
+		{
+			printf(ANSI_COLOR_GREEN "#" ANSI_COLOR_RESET);
+		}
+		else 
+		{
+			printf("%c", map[xpos][ypos]);
+        	}
+	xpos++;
+	}
     }
 }
