@@ -4,12 +4,12 @@
  *
  * Created on December 3, 2015, 11:26 AM
  */
+
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-
-
 
 #ifndef PATHFINDER_H
 #define	PATHFINDER_H

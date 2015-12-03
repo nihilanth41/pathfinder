@@ -5,7 +5,9 @@ The purpose of this project is to find a path between two locations on a map. Th
 
 ## Requirements 
 - C Compiler (GCC)
-- Python (2.x) 
+
+## Usage 
+
 
 ## Components 
 (This is essentially the grading section from assignments/final_project.pdf)
