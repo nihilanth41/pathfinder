@@ -7,7 +7,11 @@ The purpose of this project is to find a path between two locations on a map. Th
 - C Compiler (GCC)
 
 ## Usage 
+Run the following commands to install & use: 
 ```
+git clone git@github.com:nihilanth41/pathfinder.git
+cd pathfinder/src
+make 
 ./pathfinder.bin room.txt
 ```
 
