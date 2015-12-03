@@ -1,0 +1,46 @@
+#include "pathfinder.h"
+
+
+int parser(FILE* inputFile, char map[][BUFFER], int y){
+    
+    char charByChar; //holds current char 
+    int xpos = 0;
+    int ypos = 0;//initalize the 
+    
+    
+    do {
+        charByChar = fgetc(inputFile);//gets next character 
+        if(charByChar == '\n' || charByChar == '\t'){
+            //then change x and y positions BC next char will be newline
+            map[xpos][ypos] = charByChar;
+            
+            ypos++;
+            xpos = 0;
+        }
+        else{
+            map[xpos][ypos] = charByChar;
+            xpos++;
+        }
+        
+    } while (charByChar != EOF);
+
+    y = ypos;
+    printf("\nY is %d\n", y);
+    return(y);
+}//end parser
+
+
+void map_printer(char map[][BUFFER], int y){
+    int xpos = 0;
+    int ypos = 0;
+    printf("\nThis is the map\n");
+    while(ypos < y-1){
+        if(map[xpos][ypos] == '\n'){
+            ypos++;
+            xpos = 0;
+            printf("\n");
+        }
+        printf("%c", map[xpos][ypos]);
+        xpos++;
+    }
+}
