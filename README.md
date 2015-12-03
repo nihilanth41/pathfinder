@@ -7,7 +7,9 @@ The purpose of this project is to find a path between two locations on a map. Th
 - C Compiler (GCC)
 
 ## Usage 
-
+```
+./pathfinder.bin room.txt
+```
 
 ## Components 
 (This is essentially the grading section from assignments/final_project.pdf)
