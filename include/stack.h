@@ -10,20 +10,20 @@ typedef struct vertex_ {
 
 // Struct which will be the container for the stack 
 typedef struct node_ { 
-	struct vertex_ *v 
-	struct node_ *next
+	struct vertex_ *v; 
+	struct node_ *next;
 } node;
 
 // Stack type 
 typedef struct stack_ {
 	unsigned int size;
-	struct node_ *stack
+	struct node_ *stack;
 } stack;
 
-stack* create_stack()
+stack* create_stack();
 void push(stack *s, vertex *v);
-void pop(stack *s)
-vertex* top(stack *s)
-int isEmpty(stack *s) 
+void pop(stack *s);
+vertex* top(stack *s);
+int isEmpty(stack *s);
 
 #endif 

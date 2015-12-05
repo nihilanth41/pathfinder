@@ -5,10 +5,10 @@ CFLAGS=-I$(IDIR) -g -Wall
 ODIR=obj
 LDIR =../lib
 
-_DEPS = pathfinder.h 
+_DEPS = pathfinder.h parser.h stack.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o parser.o 
+_OBJ = main.o parser.o stack.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

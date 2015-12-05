@@ -1,38 +1,63 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 #include "stack.h"
 
-Stack* find_path(int robx, int roby, int gox, int goy, char room[x, y])
-{
-	Stack* head = NULL;  //make empty stack
-	int size = 0;  //size of the stack
-	head = add_new_point(head, robx, roby, size);  //first point in stack is location of the robot
+// Return: pointer to an empty stack 
+stack* create_stack() {
+	stack *sPtr = malloc(sizeof(stack));
+	sPtr->size=0;
+	sPtr->stack=NULL;
+	return sPtr;
 }
 
-Stack* add_new_point(Stack* head, int i, int j, int height)
-{
-	Stack* point = NULL;
-	Stack* temp;
-	point = malloc(sizeof(Stack));  //malloc new structure for the newly discovered point
-	if(head != NULL)  //while stack not empty
-	{
-		point->x = i;  //put in new x-coord
-		point->y = j;  //put in new y-coord
-		point->size = height++;  //increase the size of the stack by one
-		temp = head;
-		head = point;  //head now points to new node
-		point->next = temp;  //next pointer points to old head
+// Param: s - pointer to a stack 
+// Param: v - vertex to be added to the stack 
+void push(stack *s, vertex *v) {
+	//check for NULL ptr 
+	assert(s != NULL);
+	node *newNode = malloc(sizeof(node));
+	if(newNode == NULL) {
+		printf("Malloc failed");
+		exit(-1);
 	}
-	else  //if stack is empty, add first node
-	{
-		height = height++;
-		point->size = height;
-		head = point;
-		point->next = NULL;
+	else {
+		newNode->v = v;
+		newNode->next = s->stack;
+		s->stack = newNode;
+		s->size++;
 	}
-	return head;
 }
 
-Stack* delete_point(stack* point)
-{
-	
+// Param: s - pointer to a stack
+void pop(stack *s) {
+	assert(s != NULL);
+	node *top = s->stack;
+	//if stack is empty:
+	if(top == NULL) {
+		return;
+	}
+	else {
+		s->stack = top->next;
+		free(top);
+		s->size--;
+	}
 }
+
+// Param: s - pointer to a stack
+// Return: the vertex stored at the top of the stack 
+vertex* top(stack *s) {
+	assert(isEmpty(s) == 0);
+	assert(s->stack != NULL);
+	return s->stack->v;
+}
+
+// Param: s - a pointer to a stack 
+// Return: 1 if stack is empty, 0 otherwise 
+int isEmpty(stack *s) {
+	return s->stack == NULL ? 1 : 0;
+}
+
+
+
+
