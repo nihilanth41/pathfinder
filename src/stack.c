@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "stack.h"
 
 Stack* find_path(int robx, int roby, int gox, int goy, char room[x, y])
 {
