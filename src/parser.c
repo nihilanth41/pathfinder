@@ -1,4 +1,5 @@
-#include "pathfinder.h"
+#include "parser.h"
+#include "colors.h"
 
 int parser(FILE* inputFile, char map[][BUFFER], int y){
     

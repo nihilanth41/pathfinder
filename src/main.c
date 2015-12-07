@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "stack.h"
 #include "parser.h"
-#include "pathfinder.h"
 
 int main(int argc, char** argv) {
   
@@ -28,32 +26,6 @@ int main(int argc, char** argv) {
         exit(-1); //file failed to close 
     }
     printf("\n");
-
-    //test stack functions
-    //create empty stack
-    stack *s = create_stack();
-    if(isEmpty(s))
-	    printf("Empty stack!\n");
-    
-    //create vertex and populate
-    vertex *v = malloc(sizeof(vertex));
-    v->x = map[0][0];
-    v->y = map[0][0];
-    v->color = '#';
-    //push vertex to stack
-    push(s, v);
-
-    if (!(isEmpty(s)))
-	    printf("Stack not empty!\n");
-
-    //get top element of stack
-    vertex *topv = top(s);
-    printf("x: %d, y: %d c: %c\n", topv->x, topv->y, topv->color);
-
-    pop(s);
-    if(isEmpty(s))
-	    printf("Empty stack!\n");
-
 
     return (EXIT_SUCCESS);
 }
