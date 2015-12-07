@@ -7,5 +7,6 @@
 #define BUFFER 100
 
 int parser(FILE* inputFile, char map[][BUFFER], int y);
+void map_printer(char map[][BUFFER], int y);
 
 #endif
