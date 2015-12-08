@@ -3,6 +3,7 @@
 
 Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][BUFFER])
 {
+	printf("x: %d, %d\n", robx, roby);
 	int x = robx;  //current x position of the robot
 	int y = roby;  //current y position of the robot
 	int height = 0;  //height of stack
@@ -12,7 +13,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 	}
 	if(head != NULL)  //if stack is not empty and we have not reached our destination
 	{
-		if(room[x++][y] != '#' || room[x++][y] != '*')
+		if(room[x+1][y] != '#' || room[x+1][y] != '*')
 		{
 			x++;  //increment x
 			height = head->size;
@@ -21,7 +22,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x][y++] != '#' || room[x++][y] != '*')
+		else if(room[x][y+1] != '#' || room[x+1][y] != '*')
 		{
 			y++;  //increment y
 			height = head->size;
@@ -30,7 +31,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x--][y] != '#' || room[x++][y] != '*')
+		else if(room[x-1][y] != '#' || room[x+1][y] != '*')
 		{
 			x++;  //increment x
 			height = head->size;
@@ -39,7 +40,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x][y--] != '#' || room[x++][y] != '*')
+		else if(room[x][y-1] != '#' || room[x+1][y] != '*')
 		{
 			y--;  //increment y
 			height = head->size;
@@ -105,8 +106,9 @@ Stack* delete_point(Stack* head)
 
 void print_path(Stack* head)
 {
-	while(head != NULL)  //while stack is not empty
+	while(head->next !=NULL)  //while stack is not empty
 	{
+		printf("loop");
 		if(head->x > head->next->x)
 		{
 			printf("The robot moved one spot to the Right in move %d", head->size);
