@@ -3,7 +3,7 @@
 
 Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][BUFFER])
 {
-	printf("x: %d, %d\n", robx, roby);
+	printf("x,y: %d, %d\n", robx, roby);
 	int x = robx;  //current x position of the robot
 	int y = roby;  //current y position of the robot
 	int height = 0;  //height of stack
@@ -13,7 +13,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 	}
 	if(head != NULL)  //if stack is not empty and we have not reached our destination
 	{
-		if(room[x+1][y] != '#' || room[x+1][y] != '*')
+		if(room[x+1][y] != '#' && room[x+1][y] != '*')
 		{
 			x++;  //increment x
 			height = head->size;
@@ -22,7 +22,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x][y+1] != '#' || room[x+1][y] != '*')
+		else if(room[x][y+1] != '#' && room[x][y+1] != '*')
 		{
 			y++;  //increment y
 			height = head->size;
@@ -31,16 +31,16 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x-1][y] != '#' || room[x+1][y] != '*')
+		else if(room[x-1][y] != '#' && room[x-1][y] != '*')
 		{
-			x++;  //increment x
+			x--;  //increment x
 			height = head->size;
 			height++;  //new height of the stack
 			head = add_new_point(head, x, y, height);  //add this new point to the stack
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
 			find_path(head, x, y, gox, goy, room);  //explore from this new point
 		}
-		else if(room[x][y-1] != '#' || room[x+1][y] != '*')
+		else if(room[x][y-1] != '#' && room[x][y-1] != '*')
 		{
 			y--;  //increment y
 			height = head->size;
@@ -62,6 +62,8 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 	{
 		int size = 0;  //size of the stack
 		head = add_new_point(head, robx, roby, size);  //first point in stack is location of the robot  Source Vertex
+		find_path(head, x, y, gox, goy, room);  //explore from this new point
+
 	}
 	return head;
 }
@@ -82,6 +84,8 @@ Stack* add_new_point(Stack* head, int i, int j, int height)
 	}
 	else  //if stack is empty, add first node
 	{
+		point->x = i;  //put in new x-coord
+		point->y = j;  //put in new y-coord 
 		height++;
 		point->size = height;
 		head = point;
@@ -98,7 +102,7 @@ Stack* delete_point(Stack* head)
 	}
 	Stack* temp;
 	temp = head;
-	head = temp++;
+	head = head->next;
 	free(temp);
 	head->size--;
 	return head;
@@ -106,7 +110,7 @@ Stack* delete_point(Stack* head)
 
 void print_path(Stack* head)
 {
-	while(head->next !=NULL)  //while stack is not empty
+	while(head->next != NULL)  //while stack is not empty
 	{
 		printf("loop");
 		if(head->x > head->next->x)

@@ -62,8 +62,9 @@ for(i=0; i<BUFFER; i++)
 	}
 }
 
-Stack* head = malloc(sizeof(Stack));
-printf("Sx: %d Sy: %d\n", Sx, Sy);
+//Stack* head = malloc(sizeof(Stack));
+//printf("Sx: %d Sy: %d\n", Sx, Sy);
+Stack *head = NULL;
 head = find_path(head, Sx, Sy, goSx, goSy, map);
 print_path(head);
 
