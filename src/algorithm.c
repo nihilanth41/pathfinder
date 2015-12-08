@@ -144,9 +144,9 @@ void print_path(Stack* head)
 	}
 }
 
-void add_stack(char map[][BUFFER], Stack *s) {
+void add_stack(char map[][BUFFER], Stack *s, char c) {
 	while(s->next != NULL) {
-		map[s->x][s->y] = '$'; 		
+		map[s->x][s->y] = c; 		
 		s = s->next;
 	}
 }

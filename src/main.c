@@ -24,9 +24,20 @@ char map[BUFFER][BUFFER];//the array we will store the map in
 int y=0;
 y = parser(fp, map, y);
 
+// Copy map to buffer
+int i,j;
+char mapBuf1[BUFFER][BUFFER];
+char mapBuf2[BUFFER][BUFFER];
+for(i=0; i<BUFFER; i++) {
+	for(j=0; j<y; j++) {
+		mapBuf1[i][j] = map[i][j];
+		mapBuf2[i][j] = map[i][j];
+	}
+}
+
+
 int Sx,Sy,Fx,Fy;
 int goSx,goSy,goFx,goFy;
-int i,j=0;
 for(i=0; i<BUFFER; i++) 
 {
 	for(j=0; j<y; j++) 
@@ -67,9 +78,13 @@ if(isInterference(Fx, Fy, Sx, Sy, R) == 1)
 	printf("Robot initial positions interfere with eachother (<=%d)\n", R);
 	exit(-1);
 }
-Stack *head = NULL;
-head = find_path(head, Sx, Sy, goSx, goSy, map);
-add_stack(map, head);
+Stack *head1 = NULL;
+head1 = find_path(head1, Sx, Sy, goSx, goSy, mapBuf1);
+//Stack *head2 = NULL;
+//head2 = find_path(head2, Fx, Fy, goFx, goFy, mapBuf2);
+add_stack(map, head1, '$');
+//add_stack(map, head2, '+');
+
 map_printer(map,y);
 
 if( fclose(fp) != 0 )
