@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "parser.h"
+#include "algorithm.h"
 
 
 int main(int argc, char** argv) {
@@ -60,6 +61,9 @@ for(i=0; i<BUFFER; i++)
 		}
 	}
 }
+
+Stack* head = NULL;
+head = find_path(head, Sx, Sy, goSx, goSy, map);
 
 //map_printer(map, y);
 

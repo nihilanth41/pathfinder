@@ -5,10 +5,10 @@ CFLAGS=-I$(IDIR) -g -Wall
 ODIR=obj
 LDIR =../lib
 
-_DEPS = parser.h
+_DEPS = parser.h algorithm.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o parser.o 
+_OBJ = main.o parser.o algorithm.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
