@@ -7,26 +7,68 @@
 
 int main(int argc, char** argv) {
   
-    if(argc != 2) {
-	    printf("Usage is: %s <map file>\n", argv[0]);
-	    exit(-1);
-    }
+if(argc != 2) 
+{
+	printf("Usage is: %s <map file>\n", argv[0]);
+	exit(-1);
+}
 
-    FILE* fp = fopen(argv[1], "r");
-    if(fp == NULL){
-        exit(-1); //file failed to open
-    }
-    
-    char map[BUFFER][BUFFER];//the array we will store the map in 
-    int y=0;
-    y = parser(fp, map, y);
-    map_printer(map, y);
-    
-    if( fclose(fp) != 0 ){
-        exit(-1); //file failed to close 
-    }
-    printf("\n");
+FILE* fp = fopen(argv[1], "r");
+if(fp == NULL) 
+{
+	exit(-1); //file failed to open
+}
 
-    return (EXIT_SUCCESS);
+char map[BUFFER][BUFFER];//the array we will store the map in 
+int y=0;
+y = parser(fp, map, y);
+
+int Sx,Sy,Fx,Fy;
+int goSx,goSy,goFx,goFy;
+int i,j=0;
+for(i=0; i<BUFFER; i++) 
+{
+	for(j=0; j<y; j++) 
+	{
+		switch(map[i][j]) 
+		{
+			case 'S': 
+				{
+					Sx=i;
+					Sy=j;
+					break;
+				}
+			case 'E': 
+				{
+					goSx=i;
+					goSy=j;
+					break;
+				}
+			case 'F':
+				{
+					Fx=i;
+					Fy=j;
+					break;
+				}
+			case 'L':
+				{
+					goFx=i;
+					goFy=j;
+					break;
+				}
+			default: break;
+		}
+	}
+}
+
+//map_printer(map, y);
+
+if( fclose(fp) != 0 )
+{
+	exit(-1); //file failed to close 
+}
+printf("\n");
+
+return (EXIT_SUCCESS);
 }
 
