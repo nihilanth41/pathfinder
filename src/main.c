@@ -64,8 +64,7 @@ for(i=0; i<BUFFER; i++)
 
 Stack* head = NULL;
 head = find_path(head, Sx, Sy, goSx, goSy, map);
-
-//map_printer(map, y);
+print_path(head);
 
 if( fclose(fp) != 0 )
 {
