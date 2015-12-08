@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "colors.h"
+#include "algorithm.h"
 
 int parser(FILE* inputFile, char map[][BUFFER], int y){
     
@@ -53,3 +54,5 @@ void map_printer(char map[][BUFFER], int y){
 	}
     }
 }
+
+

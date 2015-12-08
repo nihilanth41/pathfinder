@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "algorithm.h"
 
 Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][BUFFER])
 {
-	printf("x,y: %d, %d\n", robx, roby);
+
+	//printf("x,y: %d, %d\n", robx, roby);
 	int x = robx;  //current x position of the robot
 	int y = roby;  //current y position of the robot
 	int height = 0;  //height of stack
@@ -13,6 +16,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 	}
 	if(head != NULL)  //if stack is not empty and we have not reached our destination
 	{
+		//printf("sizeof head: %d\n", head->size);
 		if(room[x+1][y] != '#' && room[x+1][y] != '*')
 		{
 			x++;  //increment x
@@ -65,7 +69,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 		find_path(head, x, y, gox, goy, room);  //explore from this new point
 
 	}
-	return head;
+	//return head;
 }
 
 Stack* add_new_point(Stack* head, int i, int j, int height)
@@ -139,3 +143,11 @@ void print_path(Stack* head)
 		}
 	}
 }
+
+void add_stack(char map[][BUFFER], Stack *s) {
+	while(s->next != NULL) {
+		map[s->x][s->y] = '$'; 		
+		s = s->next;
+	}
+}
+

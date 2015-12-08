@@ -66,7 +66,9 @@ for(i=0; i<BUFFER; i++)
 //printf("Sx: %d Sy: %d\n", Sx, Sy);
 Stack *head = NULL;
 head = find_path(head, Sx, Sy, goSx, goSy, map);
-print_path(head);
+add_stack(map, head);
+map_printer(map,y);
+//print_path(head);
 
 if( fclose(fp) != 0 )
 {
