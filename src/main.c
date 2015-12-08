@@ -8,9 +8,9 @@
 
 int main(int argc, char** argv) {
   
-if(argc != 2) 
+if(argc != 3) 
 {
-	printf("Usage is: %s <map file>\n", argv[0]);
+	printf("Usage is: %s <map file> <interference>\n", argv[0]);
 	exit(-1);
 }
 
@@ -19,7 +19,7 @@ if(fp == NULL)
 {
 	exit(-1); //file failed to open
 }
-
+int R = atoi(argv[2]);
 char map[BUFFER][BUFFER];//the array we will store the map in 
 int y=0;
 y = parser(fp, map, y);
@@ -61,14 +61,16 @@ for(i=0; i<BUFFER; i++)
 		}
 	}
 }
-
-//Stack* head = malloc(sizeof(Stack));
-//printf("Sx: %d Sy: %d\n", Sx, Sy);
+//Check for interference
+if(isInterference(Fx, Fy, Sx, Sy, R) == 1) 
+{
+	printf("Robot initial positions interfere with eachother (<=%d)\n", R);
+	exit(-1);
+}
 Stack *head = NULL;
 head = find_path(head, Sx, Sy, goSx, goSy, map);
 add_stack(map, head);
 map_printer(map,y);
-//print_path(head);
 
 if( fclose(fp) != 0 )
 {

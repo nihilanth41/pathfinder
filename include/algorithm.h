@@ -15,5 +15,6 @@ Stack* add_new_point(Stack* head, int i, int j, int height);
 Stack* delete_point(Stack* head);
 void print_path(Stack* head);
 void add_stack(char map[][BUFFER], Stack *s);
+int isInterference(int rob1x, int rob1y, int rob2x, int rob2y, int R); 
 
 #endif

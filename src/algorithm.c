@@ -151,3 +151,36 @@ void add_stack(char map[][BUFFER], Stack *s) {
 	}
 }
 
+int isInterference(int rob1x, int rob1y, int rob2x, int rob2y, int R) {
+	int xDist, yDist;
+	//compute X distance
+	if(rob2x > rob1x) 
+	{
+		xDist = rob2x - rob1x;
+	}
+	else 
+	{
+		xDist = rob1x - rob2x;
+	}
+	if(rob2y > rob1y) 
+	{
+		yDist = rob2y - rob1y;
+	}
+	else
+	{
+		yDist = rob1y - rob2y;
+	}
+	printf("Xdist: %d, yDist: %d\n", xDist, yDist);
+	
+	if(xDist <= R || yDist <= R)
+	{
+		return 1;
+	}
+	else
+		return 0;
+}	
+
+
+
+
+
