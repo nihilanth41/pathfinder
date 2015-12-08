@@ -80,12 +80,16 @@ if(isInterference(Fx, Fy, Sx, Sy, R) == 1)
 }
 Stack *head1 = NULL;
 head1 = find_path(head1, Sx, Sy, goSx, goSy, mapBuf1);
-//Stack *head2 = NULL;
+map_printer(mapBuf1,y);
+
+head1 = find_path(head1, Fx, Fy, goFx, goFy, mapBuf2);
+map_printer(mapBuf2,y);
+
 //head2 = find_path(head2, Fx, Fy, goFx, goFy, mapBuf2);
-add_stack(map, head1, '$');
+//add_stack(map, head1, '$');
 //add_stack(map, head2, '+');
 
-map_printer(map,y);
+
 
 if( fclose(fp) != 0 )
 {
