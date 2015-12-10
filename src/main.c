@@ -92,6 +92,7 @@ head2 = find_path(head2, Fx, Fy, goFx, goFy, mapBuf2);
 //printf("\nHead 2 size: %d\n", head2->size);
 add_stack(mapBuf2, head2, '@');
 map_printer(mapBuf2,y);
+head2 = print_path(head2);
 
 //add_stack(mapBuf2, head1, '^');
 //map_printer(mapBuf2,y);

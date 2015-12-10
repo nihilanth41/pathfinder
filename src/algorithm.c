@@ -117,29 +117,29 @@ Stack* print_path(Stack* head)
 	while(head->next != NULL)  //while stack is not empty
 	{
 		//printf("loop");
-		if(head->x > head->next->x)
+		if(head->next != NULL && head->x > head->next->x)
 		{
 			printf("The robot moved one spot to the Right in move %d\n", head->size);
 			head = delete_point(head);
-			print_path(head);
+			return(print_path(head));
 		}
-		else if(head->y > head->next->y)
+		else if(head->next != NULL && head->y > head->next->y)
 		{
 			printf("The robot moved one spot Down in move %d\n", head->size);
 			head = delete_point(head);
-			print_path(head);
+			return(print_path(head));
 		}
-		else if(head->x < head->next->x)
+		else if(head->next != NULL && head->x < head->next->x)
 		{
 			printf("The robot moved one spot to the Left in move %d\n", head->size);
 			head = delete_point(head);
-			print_path(head);
+			return(print_path(head));
 		}
-		else if(head->y < head->next->y)
+		else if(head->next != NULL && head->y < head->next->y)
 		{
 			printf("The robot moved one spot Up in move %d\n", head->size);
 			head = delete_point(head);
-			print_path(head);
+			return(print_path(head));
 		}
 	}
 	return(head);
