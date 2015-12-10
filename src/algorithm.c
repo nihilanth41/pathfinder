@@ -24,7 +24,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			height++;  //new height of the stack
 			head = add_new_point(head, x, y, height);  //add this new point to the stack
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
-			find_path(head, x, y, gox, goy, room);  //explore from this new point
+			return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 		}
 		else if(room[x][y+1] != '#' && room[x][y+1] != '*')
 		{
@@ -33,7 +33,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			height++;  //new height of the stack
 			head = add_new_point(head, x, y, height);  //add this new point to the stack
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
-			find_path(head, x, y, gox, goy, room);  //explore from this new point
+			return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 		}
 		else if(room[x-1][y] != '#' && room[x-1][y] != '*')
 		{
@@ -42,7 +42,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			height++;  //new height of the stack
 			head = add_new_point(head, x, y, height);  //add this new point to the stack
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
-			find_path(head, x, y, gox, goy, room);  //explore from this new point
+			return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 		}
 		else if(room[x][y-1] != '#' && room[x][y-1] != '*')
 		{
@@ -51,7 +51,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 			height++;  //new height of the stack
 			head = add_new_point(head, x, y, height);  //add this new point to the stack
 			room[x][y] = '*';  //make this point in array * to indicate it has been found but not finished
-			find_path(head, x, y, gox, goy, room);  //explore from this new point
+			return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 		}
 		else
 		{
@@ -59,17 +59,17 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 				head = delete_point(head);  //take this point off of the stack since it's not what we want and it doesn't get us there
 				x = head->x;  //new x-coord for where we are
 				y = head->y;  //new y-coord for where we are
-				find_path(head, x, y, gox, goy, room);  //explore from this new point
+				return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 		}
 	}
 	else  //if the stack is empty, make new stack
 	{
 		int size = 0;  //size of the stack
 		head = add_new_point(head, robx, roby, size);  //first point in stack is location of the robot  Source Vertex
-		find_path(head, x, y, gox, goy, room);  //explore from this new point
+		return(find_path(head, x, y, gox, goy, room));  //explore from this new point
 
 	}
-	//return head;
+	return head;
 }
 
 Stack* add_new_point(Stack* head, int i, int j, int height)
@@ -112,42 +112,47 @@ Stack* delete_point(Stack* head)
 	return head;
 }
 
-void print_path(Stack* head)
+Stack* print_path(Stack* head)
 {
 	while(head->next != NULL)  //while stack is not empty
 	{
-		printf("loop");
+		//printf("loop");
 		if(head->x > head->next->x)
 		{
-			printf("The robot moved one spot to the Right in move %d", head->size);
+			printf("The robot moved one spot to the Right in move %d\n", head->size);
 			head = delete_point(head);
 			print_path(head);
 		}
 		else if(head->y > head->next->y)
 		{
-			printf("The robot moved one spot Down in move %d", head->size);
+			printf("The robot moved one spot Down in move %d\n", head->size);
 			head = delete_point(head);
 			print_path(head);
 		}
 		else if(head->x < head->next->x)
 		{
-			printf("The robot moved one spot to the Left in move %d", head->size);
+			printf("The robot moved one spot to the Left in move %d\n", head->size);
 			head = delete_point(head);
 			print_path(head);
 		}
 		else if(head->y < head->next->y)
 		{
-			printf("The robot moved one spot Up in move %d", head->size);
+			printf("The robot moved one spot Up in move %d\n", head->size);
 			head = delete_point(head);
 			print_path(head);
 		}
 	}
+	return(head);
 }
 
 void add_stack(char map[][BUFFER], Stack *s, char c) {
-	while(s->next != NULL) {
-		map[s->x][s->y] = c; 		
-		s = s->next;
+	Stack* temp = s;
+	if(temp == NULL){
+		return;
+	}
+	while(temp != NULL) {
+		map[temp->x][temp->y] = c; 		
+		temp = temp->next;
 	}
 }
 
@@ -170,7 +175,7 @@ int isInterference(int rob1x, int rob1y, int rob2x, int rob2y, int R) {
 	{
 		yDist = rob1y - rob2y;
 	}
-	printf("Xdist: %d, yDist: %d\n", xDist, yDist);
+	//printf("Xdist: %d, yDist: %d\n", xDist, yDist);
 	
 	if(xDist <= R || yDist <= R)
 	{

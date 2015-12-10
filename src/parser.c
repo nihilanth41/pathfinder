@@ -26,7 +26,7 @@ int parser(FILE* inputFile, char map[][BUFFER], int y){
     } while (charByChar != EOF);
 
     y = ypos;
-    printf("\nY is %d\n", y);
+    //printf("\nY is %d\n", y);
     return(y);
 }//end parser
 
