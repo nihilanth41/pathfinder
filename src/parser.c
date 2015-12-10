@@ -53,6 +53,7 @@ void map_printer(char map[][BUFFER], int y){
 	xpos++;
 	}
     }
+    printf("\n");
 }
 
 
