@@ -35,6 +35,7 @@ void map_printer(char map[][BUFFER], int y){
     int xpos = 0;
     int ypos = 0;
     printf("\nThis is the map\n");
+    printf("\nKey: $ indicate path from S to E.\n     @ indicates path from F to L.\n     ! indicates overlapping paths.\n\n");
     while(ypos < y-1){
         if(map[xpos][ypos] == '\n'){
             ypos++;

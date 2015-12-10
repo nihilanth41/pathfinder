@@ -57,6 +57,7 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 		{
 				if(head->next == NULL){
 					printf("\nUnable to move\n");
+
 				}
 				room[x][y] = '#';  //put new wall in this spot to indicate we have finished discovering from this spot and it is not what we want
 				head = delete_point(head);  //take this point off of the stack since it's not what we want and it doesn't get us there
@@ -154,8 +155,18 @@ void add_stack(char map[][BUFFER], Stack *s, char c) {
 		return;
 	}
 	while(temp != NULL) {
-		map[temp->x][temp->y] = c; 		
-		temp = temp->next;
+		if(map[temp->x][temp->y] == 'F' || map[temp->x][temp->y] == 'L' || map[temp->x][temp->y] == 'S' || map[temp->x][temp->y] == 'E'){
+			temp = temp->next;
+		}
+		else if(map[temp->x][temp->y] == '$'){
+			map[temp->x][temp->y] = '!';
+			temp = temp->next;
+		}
+		else{
+			map[temp->x][temp->y] = c; 		
+			temp = temp->next;
+		}
+		
 	}
 }
 

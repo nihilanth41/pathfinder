@@ -78,11 +78,12 @@ if(isInterference(Fx, Fy, Sx, Sy, R) == 1)
 	printf("Robot initial positions interfere with eachother (<=%d)\n", R);
 	exit(-1);
 }
+
 Stack *head1 = NULL;
 head1 = find_path(head1, Sx, Sy, goSx, goSy, mapBuf1);
 add_stack(mapBuf1, head1, '$');
-map_printer(mapBuf1,y);
-head1 = print_path(head1);
+//map_printer(mapBuf1,y);
+//head1 = print_path(head1);
 
 
 
@@ -90,9 +91,13 @@ head1 = print_path(head1);
 Stack *head2 = NULL;
 head2 = find_path(head2, Fx, Fy, goFx, goFy, mapBuf2);
 //printf("\nHead 2 size: %d\n", head2->size);
-add_stack(mapBuf2, head2, '@');
-map_printer(mapBuf2,y);
-head2 = print_path(head2);
+add_stack(mapBuf1, head2, '@');
+mapBuf1[goFx][goFy] = 'L';
+mapBuf1[Fx][Fy] = 'F';
+mapBuf1[goSx][goSy] = 'E';
+mapBuf1[Sx][Sy] = 'S';
+map_printer(mapBuf1,y);
+//head2 = print_path(head2);
 
 //add_stack(mapBuf2, head1, '^');
 //map_printer(mapBuf2,y);
@@ -111,4 +116,6 @@ printf("\n");
 
 return (EXIT_SUCCESS);
 }
+
+
 
