@@ -9,7 +9,7 @@ It takes two input arguments:
  
 When run, the program will attempt to find a path through the map, and print out a new map with the paths each robot traveled displayed.
 
-If the initial positions of the robots conflict with the interference value (R), it will print an error message and return-1.
+If the initial positions of the robots conflict with the interference value (R), it will print an error message and return -1.
 
 All program errors return code -1
 
