@@ -48,7 +48,7 @@ Example usage:
 	* Memory leaks
 2. Segfaults sometimes
 	* I think this is due to a logic error, dereferencing a NULL pointer, array bounds checking, etc.
-	* If it segfaults run it a couple times it usually works.
+	* If it segfaults: run it a few more times (It usually works.)
 3. Builds but doesn't run (always segfaults) with gcc 4.4 (the version on babbage)
 	* It usually runs (but segfaults occasionally) when built with gcc 4.9, or Clang on OSX.
 4. The algorithm adds walls ('#') when back-tracking, so the output map may look slightly different
