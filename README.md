@@ -9,17 +9,21 @@ It takes two input arguments:
  
 When run, the program will attempt to find a path through the map, and print out a new map with the paths each robot traveled displayed.
 
-### Key
-'$' Path traveled by robot S
-'@' Path traveled by robot F
-'!' Path traveled by robots S and F
-'S' Initial position of robot S
-'F' Initial position of robot F
-'E' Final position of robot S
-'L' Final position of robot robot F
-'#' Wall (newlines are also walls) 
-' ' Traversable path 
+If the initial positions of the robots conflict with the interference value (R), it will print an error message and return-1.
 
+All program errors return code -1
+
+### Key
+- '$' Path traveled by robot S
+- '@' Path traveled by robot F
+- '!' Path traveled by robots S and F
+- 'S' Initial position of robot S
+- 'F' Initial position of robot F
+- 'E' Final position of robot S
+- 'L' Final position of robot robot F
+- '#' Wall (newlines are also walls) 
+- ' ' Traversable path 
+ 
 ## Requirements 
 - GCC 4.9 or Clang
 - Doesn't work with GCC 4.4
