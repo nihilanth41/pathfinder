@@ -55,6 +55,9 @@ Stack* find_path(Stack* head, int robx, int roby, int gox, int goy, char room[][
 		}
 		else
 		{
+				if(head->next == NULL){
+					printf("\nUnable to move\n");
+				}
 				room[x][y] = '#';  //put new wall in this spot to indicate we have finished discovering from this spot and it is not what we want
 				head = delete_point(head);  //take this point off of the stack since it's not what we want and it doesn't get us there
 				x = head->x;  //new x-coord for where we are
